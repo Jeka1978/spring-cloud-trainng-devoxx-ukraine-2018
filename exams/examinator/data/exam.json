@@ -1,0 +1,30 @@
+{
+  "mark": 80,
+  "title": "Java Exam",
+  "sections": [
+    {
+      "title": "spring",
+      "desc": "BPP questions",
+      "exercises": [
+        {
+          "question": "what diff between String Spring and Swing",
+          "answer": "only spring"
+        },
+        {
+          "question": "what is the last spring version",
+          "answer": "5.0.5.RELEASE"
+        }
+      ]
+    },
+    {
+      "title": "maven",
+      "desc": "simple maven questions",
+      "exercises": [
+        {
+          "question": "what plugin can provide dependecies info",
+          "answer": "dependency"
+        }
+      ]
+    }
+  ]
+}
