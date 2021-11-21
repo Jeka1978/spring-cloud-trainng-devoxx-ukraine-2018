@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FrontendRestController
 @RequestMapping("/api")
 public class StamController {
-
-
     @EventListener(ContextRefreshedEvent.class)
     public void a(){
         System.out.println();

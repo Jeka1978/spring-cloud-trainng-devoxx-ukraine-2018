@@ -18,8 +18,6 @@ public class ExamController {
     @Autowired(required = false)
     private ExamService examService;
 
-
-
     @PostMapping("/check")
     public CheckedExam checkExam(@RequestBody SolvedExam solvedExam) {
         return examService.convert(solvedExam);

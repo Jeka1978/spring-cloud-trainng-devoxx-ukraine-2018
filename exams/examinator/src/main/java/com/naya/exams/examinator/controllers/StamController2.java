@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class StamController2 {
-
     @GetMapping("/stam2")
     public Exercise stam(){
         return Exercise.builder().question("what is the age").answer("100500").build();

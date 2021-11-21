@@ -1,9 +1,13 @@
 package com.naya.exams.examinator.controllers;
 
+import com.naya.exams.examinator.dao.ExerciseDao;
+import com.naya.exams.examinator.services.SectionDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,6 +29,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest
 @ContextConfiguration(classes = NeededServicesForControllersConf.class)
 public class ExamControllerTest {
+    @MockBean
+    ExerciseDao exerciseDao;
+
+    @MockBean
+    SectionDao sectionDao;
+
     @Autowired
     MockMvc mockMvc;
 

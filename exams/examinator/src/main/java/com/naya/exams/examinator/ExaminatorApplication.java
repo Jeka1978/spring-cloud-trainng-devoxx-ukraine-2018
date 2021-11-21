@@ -37,9 +37,6 @@ public class ExaminatorApplication {
 		return builder.build();
 	}
 
-
-
-
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ExaminatorApplication.class);
 		System.out.println();
