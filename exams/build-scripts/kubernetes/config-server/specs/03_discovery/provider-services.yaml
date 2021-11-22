@@ -17,7 +17,7 @@ metadata:
   namespace: challenges-demo
 spec:
   selector:
-    name: backend-history
+    name: backend-theology
   ports:
     - port: 8080
       targetPort: 8080

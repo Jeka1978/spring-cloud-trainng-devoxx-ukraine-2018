@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: challenges-provider-deployment
+  name: examinator-deployment
   namespace: challenges-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: challenges-provider
+      name: examinator
   template:
     metadata:
       labels:
-        name: challenges-provider
+        name: examinator
     spec:
       containers:
         - name: challenges-provider-container
@@ -24,6 +24,8 @@ spec:
               value: "8080"
             - name: EUREKA_CLIENT_ENABLED
               value: "false"
+            - name: CONFIG_URL
+              value: "http://service-config:8080/"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,6 +53,8 @@ spec:
               value: "false"
             - name: SERVER_PORT
               value: "8080"
+            - name: CONFIG_URL
+              value: "http://service-config:8080/"
           livenessProbe:
             httpGet:
               port: 8080
@@ -63,21 +67,50 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-history-deployment
+  name: backend-theology-deployment
   namespace: challenges-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: backend-history
+      name: backend-theology
   template:
     metadata:
       labels:
-        name: backend-history
+        name: backend-theology
     spec:
       containers:
-        - name: challenges-provider-history-container
-          image: application/provider-history:latest
+        - name: challenges-provider-theology-container
+          image: application/provider-theology:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: EUREKA_CLIENT_ENABLED
+              value: "false"
+            - name: SERVER_PORT
+              value: "8080"
+            - name: CONFIG_URL
+              value: "http://service-config:8080/"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+  namespace: challenges-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: config-server
+  template:
+    metadata:
+      labels:
+        name: config-server
+    spec:
+      containers:
+        - name: config-server-container
+          image: application/config-server:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
