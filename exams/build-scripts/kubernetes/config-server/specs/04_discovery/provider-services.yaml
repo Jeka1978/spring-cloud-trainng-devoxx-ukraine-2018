@@ -13,7 +13,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: provider-history
+  name: provider-theology
   namespace: challenges-demo
 spec:
   selector:

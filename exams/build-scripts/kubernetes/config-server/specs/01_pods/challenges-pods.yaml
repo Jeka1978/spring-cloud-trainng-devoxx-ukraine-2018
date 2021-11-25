@@ -96,20 +96,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: config-server-deployment
+  name: service-config-deployment
   namespace: challenges-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: config-server
+      name: config-server-pod
   template:
     metadata:
       labels:
-        name: config-server
+        name: config-server-pod
     spec:
       containers:
-        - name: config-server-container
+        - name: service-config-container
           image: application/config-server:latest
           imagePullPolicy: Never
           ports:
