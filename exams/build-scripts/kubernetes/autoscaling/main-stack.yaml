@@ -1,0 +1,140 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: examinator-config
+  namespace: challenges-demo
+data:
+  server_port: "8080"
+  eureka_enabled: "false"
+  config_server_enabled: "false"
+  math_max: "10"
+  exam_title: "Complicated exam"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: examinator-deployment
+  namespace: challenges-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: examinator
+  template:
+    metadata:
+      labels:
+        name: examinator
+    spec:
+      containers:
+        - name: challenges-provider-container
+          image: application/examinator:layered
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: server_port
+            - name: EUREKA_CLIENT_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: eureka_enabled
+            - name: SPRING_CLOUD_CONFIG_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: config_server_enabled
+            - name: MATH_MAX
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: math_max
+            - name: EXAM_TITLE
+              valueFrom:
+                configMapKeyRef:
+                  key: exam_title
+                  name: examinator-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-math-deployment
+  namespace: challenges-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: backend-math
+  template:
+    metadata:
+      labels:
+        name: backend-math
+    spec:
+      containers:
+        - name: challenges-provider-math-container
+          image: application/provider-math:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: server_port
+            - name: EUREKA_CLIENT_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: eureka_enabled
+            - name: SPRING_CLOUD_CONFIG_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: config_server_enabled
+            - name: MATH_MAX
+              valueFrom:
+                configMapKeyRef:
+                  name: examinator-config
+                  key: math_max
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/liveness
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health/readiness
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-examinator-service
+  namespace: challenges-demo
+spec:
+  selector:
+    name: examinator
+  type: LoadBalancer
+  ports:
+    - port: 8093
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: provider-math
+  namespace: challenges-demo
+spec:
+  selector:
+    name: backend-math
+  ports:
+    - port: 8080
+      targetPort: 8080
