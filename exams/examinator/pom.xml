@@ -52,6 +52,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<imageName>application/examinator:oci</imageName>
+<!--					<layers>-->
+<!--						<enabled>true</enabled>-->
+<!--						<configuration>${project.basedir}/src/layers.xml</configuration>-->
+<!--					</layers>-->
 				</configuration>
 			</plugin>
 		</plugins>

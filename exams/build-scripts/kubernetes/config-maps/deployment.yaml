@@ -10,6 +10,15 @@ data:
   math_max: "10"
   exam_title: "Complicated exam"
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: challenges-demo
+  name: provider-math-config
+data:
+  application.properties: |-
+    math.max: 100
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -27,7 +36,7 @@ spec:
     spec:
       containers:
         - name: challenges-provider-container
-          image: application/examinator:layered
+          image: application/examinator:kubernetes
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
@@ -75,7 +84,7 @@ spec:
     spec:
       containers:
         - name: challenges-provider-math-container
-          image: application/provider-math:latest
+          image: application/provider-math:kubernetes
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
@@ -126,7 +135,7 @@ spec:
     spec:
       containers:
         - name: challenges-provider-history-container
-          image: application/provider-history:latest
+          image: application/provider-history:kubernetes
           imagePullPolicy: Never
           ports:
             - containerPort: 8080

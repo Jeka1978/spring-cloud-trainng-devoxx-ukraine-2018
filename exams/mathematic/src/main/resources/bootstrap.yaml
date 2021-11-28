@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+        mode: polling
+        period: 5000
+      config:
+        enabled: true
+        sources:
+          - name: provider-math-config
+            namespace: challenges-demo
