@@ -33,14 +33,14 @@ mvn clean package -DskipTests
 
 echo "Unpacking JARs"
 unpack config-server config-server ${APP_VERSION}
-unpack discovery-service-eurika discovery-service ${APP_VERSION}
+unpack discovery-service discovery-service ${APP_VERSION}
 unpack examinator examinator ${APP_VERSION}
 unpack mathematic mathematic ${APP_VERSION}
 unpack history history ${APP_VERSION}
 
 echo "Building Docker image"
 build config-server application/config-server
-build discovery-service-eurika application/discovery-service
+build discovery-service application/discovery-service
 build examinator application/examinator
 build mathematic application/provider-math
 build history application/provider-history

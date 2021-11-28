@@ -20,7 +20,7 @@ mvn clean package -DskipTests
 
 echo "Building Docker images"
 build_basic ./config-server/target/config-server-${APP_VERSION}.jar application/config-server
-build_basic ./discovery-service-eurika/target/discovery-service-${APP_VERSION}.jar application/discovery-service
+build_basic ./discovery-service/target/discovery-service-${APP_VERSION}.jar application/discovery-service
 build_basic ./examinator/target/examinator-${APP_VERSION}.jar application/examinator
 build_basic ./mathematic/target/mathematic-${APP_VERSION}.jar application/provider-math
 build_basic ./history/target/history-${APP_VERSION}.jar application/provider-history
