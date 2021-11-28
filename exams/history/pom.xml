@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.naya.exams</groupId>
-	<artifactId>theology</artifactId>
+	<artifactId>history</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>theology</name>
+	<name>history</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -46,7 +46,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<imageName>application/provider-theology:oci</imageName>
+					<imageName>application/provider-history:oci</imageName>
 				</configuration>
 			</plugin>
 		</plugins>

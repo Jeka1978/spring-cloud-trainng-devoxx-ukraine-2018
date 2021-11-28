@@ -112,21 +112,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-theology-deployment
+  name: backend-history-deployment
   namespace: challenges-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: backend-theology
+      name: backend-history
   template:
     metadata:
       labels:
-        name: backend-theology
+        name: backend-history
     spec:
       containers:
-        - name: challenges-provider-theology-container
-          image: application/provider-theology:latest
+        - name: challenges-provider-history-container
+          image: application/provider-history:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
@@ -175,11 +175,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: provider-theology
+  name: provider-history
   namespace: challenges-demo
 spec:
   selector:
-    name: backend-theology
+    name: backend-history
   ports:
     - port: 8080
       targetPort: 8080

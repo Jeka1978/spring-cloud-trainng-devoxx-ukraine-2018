@@ -63,8 +63,8 @@ services:
       DISCOVERY_URL: http://service-discovery:8080/eureka/
       CONFIG_URL: http://service-config:8080/
 
-  provider-theology:
-    image: application/provider-theology:naive
+  provider-history:
+    image: application/provider-history:naive
     depends_on:
       service-discovery:
         condition: service_healthy

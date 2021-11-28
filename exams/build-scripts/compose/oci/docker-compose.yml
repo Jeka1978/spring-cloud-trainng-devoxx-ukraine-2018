@@ -30,8 +30,8 @@ services:
       DISCOVERY_URL: http://service-discovery:8080/eureka/
       CONFIG_URL: http://service-config:8080/
 
-  provider-theology:
-    image: application/provider-theology:oci
+  provider-history:
+    image: application/provider-history:oci
     environment:
       SERVER_PORT: 8080
       DISCOVERY_URL: http://service-discovery:8080/eureka/

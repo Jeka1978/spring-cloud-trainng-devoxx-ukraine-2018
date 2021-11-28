@@ -19,7 +19,7 @@ services:
         condition: service_healthy
       provider-math:
         condition: service_healthy
-      provider-theology:
+      provider-history:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
@@ -48,8 +48,8 @@ services:
       EUREKA_CLIENT_ENABLED: "false"
       CONFIG_URL: http://service-config:8080/
 
-  provider-theology:
-    image: application/provider-theology:naive
+  provider-history:
+    image: application/provider-history:naive
     depends_on:
       service-config:
         condition: service_healthy
