@@ -75,7 +75,7 @@ spec:
     spec:
       containers:
         - name: challenges-provider-math-container
-          image: application/provider-math:latest
+          image: application/provider-math:layered
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
@@ -110,9 +110,9 @@ spec:
               path: /actuator/health/readiness
           resources:
             limits:
-              cpu: 500m
+              cpu: 1000m
             requests:
-              cpu: 200m
+              cpu: 500m
 ---
 apiVersion: v1
 kind: Service
