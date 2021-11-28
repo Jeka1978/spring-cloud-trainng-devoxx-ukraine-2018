@@ -16,7 +16,6 @@
 		<module>examinator</module>
 		<module>mathematic</module>
 		<module>discovery-service-eurika</module>
-		<module>front-end-starter</module>
 		<module>config-server</module>
 	</modules>
 
@@ -64,12 +63,6 @@
 	
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>com.naya.exams</groupId>
-				<artifactId>front-end-starter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
